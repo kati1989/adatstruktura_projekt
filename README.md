@@ -1,0 +1,1 @@
+# adatstruktura_projekt
