@@ -1,7 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "Person.h"
 #include "Board.h"
-#include <stdlib.h>
 
 void felhasznaloMenu();
 
@@ -11,16 +11,28 @@ void kiirat_menu();
 
 PERSON_ARRAY personArray;
 BOARD_ARRAY boardArray;
+CARD_ARRAY cardArray;
 
 int main() {
     printf("Hello, World!\n");
-    PERSON person = (PERSON) {.id=2, .name="test"};
+    PERSON person = (PERSON) {.id=0, .name="test"};
     initPersons(&personArray);
     initBoards(&boardArray);
+    initCards(&boardArray);
+
 
     insertPerson(&personArray, person);
-    person = (PERSON) {.id=3, .name="testr"};
+    person = (PERSON) {.id=1, .name="testr"};
     insertPerson(&personArray, person);
+
+    BOARD board = (BOARD){.name="board1", .cards_count=1, .cards={0} };
+    insertBoard(&boardArray,board);
+
+    board = (BOARD){.name="board2" };
+    insertBoard(&boardArray,board);
+
+    CARD  card = (CARD){.taskName="name"};
+    insertCard(&cardArray,card);
 
     int fomenu = -1;
     kiirat_menu();
@@ -41,7 +53,6 @@ int main() {
     } while (fomenu != 0);
     return 0;
 }
-
 
 void kiirat_tableMenu() {
     system("cls");
@@ -67,6 +78,16 @@ void tableMenu() {
             case 2:
                 printBoards(&boardArray);
                 break;
+            case 3: {
+                int id;
+                printf("Kerem a tabla id-jat:");
+                scanf("%d", &id);
+                printBoardById(id, &boardArray, &cardArray);
+            }
+                break;
+            case 4: {
+                readAndInsertCardToBoard(&boardArray,&cardArray);
+            }
         }
         scanf("%d", &menu);
     } while (menu != 0);
