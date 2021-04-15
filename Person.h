@@ -36,7 +36,7 @@ void printPersons(PERSON_ARRAY *personArray) {
 
     for (int i = 0; i < personArray->size; i++) {
         printf("id: %d \n", personArray->persons[i].id);
-        printf("id: %s \n", personArray->persons[i].name);
+        printf("name: %s \n", personArray->persons[i].name);
         printf("*************************\n");
     }
 
@@ -68,5 +68,14 @@ void readAndInsertPerson(PERSON_ARRAY *a) {
     insertPerson(a, p);
 }
 
-
+void printPersonById(int id,PERSON_ARRAY *a){
+    for (int i=0;i<a->size;i++){
+        if (a->persons[i].id==id){
+            printf("*************************\n");
+            printf("id: %d \n", a->persons[i].id);
+            printf("name: %s \n", a->persons[i].name);
+            printf("*************************\n");
+        }
+    }
+}
 #endif // PERSON_H
